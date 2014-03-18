@@ -1,0 +1,60 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
+    i18n_domain="mazu.migration">
+
+    <include package="collective.jsonmigrator" />
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="mazu-migration-config"
+        class=".configview.MazuMigrationConfigView"
+        template="configview.pt"
+        permission="zope2.ViewManagementScreens"
+        />
+
+    <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="mazu-migration-run"
+        class=".configview.MazuMigrationRunView"
+        permission="zope2.ViewManagementScreens"
+        />
+
+    <transmogrifier:registerConfig
+        name="mazu.migration"
+        title="Migration configuration."
+        configuration="migration_config.cfg"
+        />
+
+    <utility
+        component=".schemaupdater.MazuDexterityUpdateSection"
+        name="mazu.migration.schemaupdater"
+        />
+
+    <utility
+        component=".datafields.MazuDataFields"
+        name="mazu.migration.datafields"
+        />
+
+    <utility
+        component=".uid.MazuUIDUpdaterSection"
+        name="mazu.migration.uid"
+        />
+
+    <utility
+        component=".commit.PartialCommit"
+        name="mazu.migration.commit"
+        />
+
+    <utility
+        component=".substitution.SubstitutionSection"
+        name="mazu.migration.substitute"
+        />
+
+    <utility
+        component=".catalogsource.MazuCatalogSourceSection"
+        name="mazu.migration.catalogsource"
+        provides="collective.transmogrifier.interfaces.ISectionBlueprint"
+        />
+
+</configure>
