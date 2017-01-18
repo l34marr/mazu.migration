@@ -1,5 +1,5 @@
 from zope.interface import classProvides, implements
-from plone.uuid.interfaces import IMutableUUID
+from plone.uuid.interfaces import IMutableUUID, ATTRIBUTE_NAME
 
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from collective.transmogrifier.interfaces import ISection
@@ -28,7 +28,6 @@ class MazuUIDUpdaterSection(object):
         self.uidkey = Matcher(*uidkeys)
 
     def __iter__(self):
-
         for item in self.previous:
 
             pathkey = self.pathkey(*item.keys())[0]
@@ -46,6 +45,8 @@ class MazuUIDUpdaterSection(object):
 
             oldUID = obj.UID()
             if oldUID != uid:
-                IMutableUUID(obj).set(str(uid))
+                #IMutableUUID(obj).set(str(uid))
+
+                setattr(obj, ATTRIBUTE_NAME, uid)
 
             yield item

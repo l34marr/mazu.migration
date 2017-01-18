@@ -32,6 +32,16 @@
         />
 
     <utility
+        component=".fieldmap.MazuFieldMapSection"
+        name="mazu.migration.fieldmap"
+        />
+
+    <utility
+        component=".workflow.WorkflowHistory"
+        name="mazu.migration.workflowupdater"
+        />
+
+    <utility
         component=".datafields.MazuDataFields"
         name="mazu.migration.datafields"
         />

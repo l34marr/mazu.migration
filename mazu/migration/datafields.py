@@ -52,11 +52,13 @@ class MazuDataFields(object):
             if '/'.join(obj.getPhysicalPath()[self.root_path_length:]) != path:
                 yield item
                 continue
-
+            #import pdb; pdb.set_trace()
             for schemata in iterSchemata(obj):
                 for name, field in getFieldsInOrder(schemata):
                     if field.readonly:
                         continue
+                    # if name=='deity_main':
+                    #     name = 'deity_host'
                     if INamedField.providedBy(field):
                        value = item.get('%s%s' % (self.datafield_prefix, name),
                                         _marker)
