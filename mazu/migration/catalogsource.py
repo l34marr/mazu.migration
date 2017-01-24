@@ -3,10 +3,10 @@ import urllib
 import urllib2
 import json as simplejson
 
-from collective.jsonmigrator import catalogsource
+from collective.jsonmigrator.blueprints import source_catalog
 
 
-class MazuCatalogSourceSection(catalogsource.CatalogSourceSection):
+class MazuCatalogSourceSection(source_catalog.CatalogSourceSection):
     """ Custom catalog source section.
 
     Implements additional 'include_subobjects' option. If this option is set to
